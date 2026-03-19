@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EMDIEM Global Services — Agenda Estratégica</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: { 400: '#FBBF24', 500: '#F59E0B', 600: '#D97706' },
+            dark: { 900: '#0A0A0F', 800: '#111118', 700: '#1A1A25', 600: '#22223A' }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    .gradient-text { background: linear-gradient(135deg, #FBBF24, #F59E0B, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .glow-gold { box-shadow: 0 0 40px rgba(251,191,36,0.15); }
+    .card-glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.07); }
+    .input-field { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease; }
+    .input-field:focus { background: rgba(255,255,255,0.08); border-color: rgba(251,191,36,0.6); box-shadow: 0 0 0 3px rgba(251,191,36,0.1); outline: none; }
+    .btn-primary { background: linear-gradient(135deg, #F59E0B, #D97706); transition: all 0.3s ease; }
+    .btn-primary:hover { background: linear-gradient(135deg, #FBBF24, #F59E0B); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(245,158,11,0.4); }
+    .btn-primary:active { transform: translateY(0); }
+    .particle { position: absolute; border-radius: 50%; animation: float linear infinite; }
+    @keyframes float { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; } }
+    .badge-pulse { animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  </style>
+</head>
+<body class="bg-dark-900 text-white font-sans min-h-screen overflow-x-hidden">
+
+  <!-- Partículas de fondo -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="particle w-1 h-1 bg-gold-500 opacity-30 left-[10%]" style="animation-duration:18s;animation-delay:0s;"></div>
+    <div class="particle w-1 h-1 bg-gold-400 opacity-20 left-[25%]" style="animation-duration:22s;animation-delay:3s;"></div>
+    <div class="particle w-0.5 h-0.5 bg-white opacity-20 left-[40%]" style="animation-duration:16s;animation-delay:6s;"></div>
+    <div class="particle w-1 h-1 bg-gold-500 opacity-25 left-[60%]" style="animation-duration:20s;animation-delay:1s;"></div>
+    <div class="particle w-0.5 h-0.5 bg-gold-400 opacity-20 left-[75%]" style="animation-duration:24s;animation-delay:8s;"></div>
+    <div class="particle w-1 h-1 bg-white opacity-15 left-[88%]" style="animation-duration:19s;animation-delay:4s;"></div>
+  </div>
+
+  <!-- HERO -->
+  <section class="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-20">
+
+    <!-- Logo / Badge -->
+    <div class="flex items-center gap-2 mb-8">
+      <div class="w-2 h-2 rounded-full bg-green-400 badge-pulse"></div>
+      <span class="text-xs font-medium text-gray-400 tracking-widest uppercase">Sistema Activo · Agenda en Tiempo Real</span>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="text-4xl md:text-6xl lg:text-7xl font-800 text-center leading-tight mb-6 max-w-4xl">
+      <span class="gradient-text font-extrabold">Agenda Estratégica</span><br/>
+      <span class="text-white font-light">Internacional</span>
+    </h1>
+
+    <p class="text-gray-400 text-center text-lg md:text-xl max-w-2xl mb-4 leading-relaxed">
+      Consultoría de alto nivel para empresas que operan a escala global.
+      Auditorías, GDPR, expansiones internacionales y estructuración corporativa.
+    </p>
+
+    <!-- Trust badges -->
+    <div class="flex flex-wrap justify-center gap-4 mb-14 text-xs text-gray-500">
+      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> Suiza & Europa</span>
+      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> Compliance GDPR</span>
+      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> Due Diligence</span>
+      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> M&A Internacional</span>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="w-full max-w-lg card-glass rounded-2xl p-8 glow-gold">
+
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold text-white mb-1">Solicitar Reunión Estratégica</h2>
+        <p class="text-gray-500 text-sm">Consultas prioritarias confirmadas en minutos.</p>
+      </div>
+
+      <form id="agendaForm" class="space-y-4">
+
+        <div>
+          <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Nombre completo</label>
+          <input type="text" id="nombre" placeholder="Ej. Carlos Mendez" required
+            class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-gray-600 text-sm"/>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Email corporativo</label>
+          <input type="email" id="email" placeholder="carlos@empresa.com" required
+            class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-gray-600 text-sm"/>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Empresa</label>
+          <input type="text" id="empresa" placeholder="Nombre de tu empresa" required
+            class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-gray-600 text-sm"/>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Motivo de consulta</label>
+          <textarea id="motivo" rows="3" placeholder="Ej: Necesito una auditoría GDPR para expansión a Suiza..." required
+            class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-gray-600 text-sm resize-none"></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn"
+          class="btn-primary w-full py-3.5 rounded-lg font-semibold text-dark-900 text-sm tracking-wide flex items-center justify-center gap-2">
+          <span id="btnText">Solicitar Reunión Ahora</span>
+          <svg id="btnIcon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+          <svg id="btnSpinner" class="hidden animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
+          </svg>
+        </button>
+
+      </form>
+
+      <!-- Estado: éxito -->
+      <div id="successMsg" class="hidden mt-4 p-4 rounded-xl border border-green-500/30 bg-green-500/10">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-green-400 font-semibold text-sm mb-1">Reunión Confirmada</p>
+            <p id="successDetail" class="text-gray-400 text-xs leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado: prioridad estándar -->
+      <div id="standardMsg" class="hidden mt-4 p-4 rounded-xl border border-blue-500/30 bg-blue-500/10">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-blue-400 font-semibold text-sm mb-1">Solicitud Recibida</p>
+            <p class="text-gray-400 text-xs leading-relaxed">Nuestro equipo se pondrá en contacto contigo en las próximas 24-48 horas para coordinar la reunión.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado: rate limited -->
+      <div id="rateLimitMsg" class="hidden mt-4 p-4 rounded-xl border border-red-500/30 bg-red-500/10">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M12 3a9 9 0 100 18A9 9 0 0012 3z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-red-400 font-semibold text-sm mb-1">Límite de solicitudes alcanzado</p>
+            <p id="rateLimitDetail" class="text-gray-400 text-xs leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado: error -->
+      <div id="errorMsg" class="hidden mt-4 p-4 rounded-xl border border-orange-500/30 bg-orange-500/10">
+        <p class="text-orange-400 text-sm font-medium">Error al enviar. Por favor intenta nuevamente.</p>
+      </div>
+
+    </div>
+
+    <!-- Disclaimer -->
+    <p class="text-gray-600 text-xs mt-6 text-center max-w-sm">
+      Al enviar este formulario aceptas que procesemos tu información para gestionar la cita solicitada.
+    </p>
+  </section>
+
+  <!-- SCRIPT -->
+  <script>
+    const WEBHOOK_URL = 'https://ceo-emdiem-global-services-n8n.ex71kk.easypanel.host/webhook/agenda-estrategica';
+
+    const form       = document.getElementById('agendaForm');
+    const submitBtn  = document.getElementById('submitBtn');
+    const btnText    = document.getElementById('btnText');
+    const btnIcon    = document.getElementById('btnIcon');
+    const btnSpinner = document.getElementById('btnSpinner');
+
+    function hideAll() {
+      ['successMsg','standardMsg','rateLimitMsg','errorMsg'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+    }
+
+    function setLoading(loading) {
+      submitBtn.disabled = loading;
+      btnText.textContent = loading ? 'Procesando...' : 'Solicitar Reunión Ahora';
+      btnIcon.classList.toggle('hidden', loading);
+      btnSpinner.classList.toggle('hidden', !loading);
+    }
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      hideAll();
+      setLoading(true);
+
+      const payload = {
+        nombre:           document.getElementById('nombre').value.trim(),
+        email:            document.getElementById('email').value.trim(),
+        empresa:          document.getElementById('empresa').value.trim(),
+        motivo_consulta:  document.getElementById('motivo').value.trim()
+      };
+
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if (data.status === 'confirmed') {
+          document.getElementById('successDetail').textContent =
+            'Tu reunión ha sido agendada para el ' + data.cita.fecha +
+            ' a las ' + data.cita.hora + '. Se envió una confirmación a ' + data.cita.confirmacion_email;
+          document.getElementById('successMsg').classList.remove('hidden');
+          form.reset();
+
+        } else if (data.status === 'received') {
+          document.getElementById('standardMsg').classList.remove('hidden');
+          form.reset();
+
+        } else if (data.status === 'rate_limited') {
+          const reset = data.reinicio_en
+            ? ' Podrás intentarlo nuevamente a las ' + new Date(data.reinicio_en).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }) + '.'
+            : '';
+          document.getElementById('rateLimitDetail').textContent =
+            'Has realizado demasiadas solicitudes en la última hora.' + reset;
+          document.getElementById('rateLimitMsg').classList.remove('hidden');
+
+        } else {
+          document.getElementById('errorMsg').classList.remove('hidden');
+        }
+
+      } catch (err) {
+        document.getElementById('errorMsg').classList.remove('hidden');
+      } finally {
+        setLoading(false);
+      }
+    });
+  </script>
+
+</body>
+</html>
