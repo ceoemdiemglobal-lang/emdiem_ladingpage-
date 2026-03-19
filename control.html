@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>EMDIEM — Remote Control</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #0A0A0F; }
+    .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); backdrop-filter: blur(12px); }
+    .btn-gold { background: linear-gradient(135deg,#F59E0B,#D97706); transition: all 0.2s; }
+    .btn-gold:active { transform: scale(0.97); opacity: 0.9; }
+    .btn-red  { background: linear-gradient(135deg,#EF4444,#DC2626); transition: all 0.2s; }
+    .btn-red:active  { transform: scale(0.97); }
+    .btn-blue { background: linear-gradient(135deg,#3B82F6,#2563EB); transition: all 0.2s; }
+    .btn-blue:active { transform: scale(0.97); }
+    .btn-green{ background: linear-gradient(135deg,#10B981,#059669); transition: all 0.2s; }
+    .btn-green:active{ transform: scale(0.97); }
+    .pulse { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); padding:12px 24px; border-radius:12px; font-size:13px; font-weight:600; z-index:999; transition:all 0.3s; opacity:0; pointer-events:none; }
+    .toast.show { opacity:1; }
+  </style>
+</head>
+<body class="min-h-screen text-white pb-10">
+
+  <!-- Header -->
+  <div class="sticky top-0 z-10 px-4 py-4" style="background:rgba(10,10,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)">
+    <div class="flex items-center justify-between max-w-md mx-auto">
+      <div>
+        <p class="text-xs text-gray-500 tracking-widest uppercase">Remote Control</p>
+        <h1 class="text-base font-bold text-white">EMDIEM Global</h1>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <div class="w-2 h-2 rounded-full bg-green-400 pulse"></div>
+        <span class="text-xs text-gray-400">n8n Live</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-md mx-auto px-4 pt-5 space-y-4">
+
+    <!-- STATUS CARD -->
+    <div class="card rounded-2xl p-4">
+      <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">System Status</p>
+      <div class="grid grid-cols-2 gap-2" id="statusGrid">
+        <div class="bg-white/5 rounded-xl p-3 text-center">
+          <div class="w-2 h-2 rounded-full bg-green-400 mx-auto mb-1 pulse"></div>
+          <p class="text-xs text-gray-400">Agenda</p>
+          <p class="text-xs font-semibold text-green-400">Active</p>
+        </div>
+        <div class="bg-white/5 rounded-xl p-3 text-center">
+          <div class="w-2 h-2 rounded-full bg-green-400 mx-auto mb-1 pulse"></div>
+          <p class="text-xs text-gray-400">Security</p>
+          <p class="text-xs font-semibold text-green-400">Active</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK TEST -->
+    <div class="card rounded-2xl p-4">
+      <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">Quick Test — Agenda Flow</p>
+      <div class="space-y-3">
+        <input id="testName"  type="text"    placeholder="Full name"        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 outline-none focus:border-yellow-500/50"/>
+        <input id="testEmail" type="email"   placeholder="Email"            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 outline-none focus:border-yellow-500/50"/>
+        <input id="testCo"    type="text"    placeholder="Company"          class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 outline-none focus:border-yellow-500/50"/>
+        <input id="testMotivo" type="text"   placeholder="Reason (e.g. GDPR audit Switzerland)" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 outline-none focus:border-yellow-500/50"/>
+        <button onclick="testAgenda()" class="btn-gold w-full py-3 rounded-xl font-semibold text-sm text-gray-900 flex items-center justify-center gap-2" id="testBtn">
+          <span id="testBtnTxt">Send Test Request</span>
+        </button>
+      </div>
+      <div id="testResult" class="hidden mt-3 p-3 rounded-xl text-xs leading-relaxed"></div>
+    </div>
+
+    <!-- SECURITY TEST -->
+    <div class="card rounded-2xl p-4">
+      <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">Security Monitor</p>
+      <div class="grid grid-cols-2 gap-2">
+        <button onclick="testSecurity('clean')" class="btn-green py-3 rounded-xl text-xs font-semibold text-white">
+          Send Clean Request
+        </button>
+        <button onclick="testSecurity('malicious')" class="btn-red py-3 rounded-xl text-xs font-semibold text-white">
+          Simulate SQL Attack
+        </button>
+      </div>
+      <div id="secResult" class="hidden mt-3 p-3 rounded-xl text-xs leading-relaxed"></div>
+    </div>
+
+    <!-- RATE LIMIT RESET -->
+    <div class="card rounded-2xl p-4">
+      <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Maintenance</p>
+      <p class="text-xs text-gray-500 mb-3">Reset rate limit counters if you're blocked during testing.</p>
+      <button onclick="resetRateLimit()" class="btn-blue w-full py-3 rounded-xl text-xs font-semibold text-white">
+        Reset Rate Limits
+      </button>
+      <div id="resetResult" class="hidden mt-3 p-3 rounded-xl text-xs"></div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="card rounded-2xl p-4">
+      <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">Quick Links</p>
+      <div class="space-y-2">
+        <a href="https://ceo-emdiem-global-services-n8n.ex71kk.easypanel.host" target="_blank"
+           class="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3 text-sm text-gray-300 active:bg-white/10">
+          <span>n8n Dashboard</span><span class="text-gray-600">→</span>
+        </a>
+        <a href="https://ceoemdiemglobal-lang.github.io/emdiem_ladingpage-/" target="_blank"
+           class="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3 text-sm text-gray-300 active:bg-white/10">
+          <span>Landing Page</span><span class="text-gray-600">→</span>
+        </a>
+        <a href="https://calendar.google.com" target="_blank"
+           class="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3 text-sm text-gray-300 active:bg-white/10">
+          <span>Google Calendar</span><span class="text-gray-600">→</span>
+        </a>
+        <a href="https://mail.google.com" target="_blank"
+           class="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3 text-sm text-gray-300 active:bg-white/10">
+          <span>Gmail</span><span class="text-gray-600">→</span>
+        </a>
+      </div>
+    </div>
+
+    <p class="text-center text-gray-700 text-xs pb-4">EMDIEM Global Services · Remote Control Panel</p>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast bg-gray-800 text-white"></div>
+
+  <script>
+    const N8N = 'https://ceo-emdiem-global-services-n8n.ex71kk.easypanel.host';
+
+    function showToast(msg, color) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.background = color || '#1F2937';
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    function showResult(id, data, isError) {
+      const el = document.getElementById(id);
+      el.classList.remove('hidden');
+      el.className = el.className.replace('hidden','').trim();
+      el.style.background = isError ? 'rgba(239,68,68,0.1)' : 'rgba(16,185,129,0.1)';
+      el.style.border = '1px solid ' + (isError ? 'rgba(239,68,68,0.3)' : 'rgba(16,185,129,0.3)');
+      el.style.color = isError ? '#FCA5A5' : '#6EE7B7';
+      el.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+    }
+
+    async function testAgenda() {
+      const btn = document.getElementById('testBtn');
+      const txt = document.getElementById('testBtnTxt');
+      const name  = document.getElementById('testName').value.trim()  || 'Test User';
+      const email = document.getElementById('testEmail').value.trim() || 'test@test.com';
+      const co    = document.getElementById('testCo').value.trim()    || 'Test Corp';
+      const motivo= document.getElementById('testMotivo').value.trim()|| 'General inquiry';
+      btn.disabled = true; txt.textContent = 'Sending...';
+      try {
+        const res  = await fetch(N8N + '/webhook/agenda-estrategica', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ nombre: name, email, empresa: co, motivo_consulta: motivo })
+        });
+        const data = await res.json();
+        const isErr = data.status === 'rate_limited' || data.status === 'error';
+        showResult('testResult', data, isErr);
+        showToast(data.status === 'confirmed' ? '✅ Meeting confirmed!' : data.status === 'received' ? '📨 Request received' : '⚠️ ' + data.status, isErr ? '#7F1D1D' : '#064E3B');
+      } catch(e) {
+        showResult('testResult', 'Error: ' + e.message, true);
+      } finally {
+        btn.disabled = false; txt.textContent = 'Send Test Request';
+      }
+    }
+
+    async function testSecurity(type) {
+      const payload = type === 'malicious'
+        ? { user: "admin' OR 1=1 --", action: 'login', query: 'SELECT * FROM users' }
+        : { user: 'john.doe', action: 'view_dashboard', session: 'abc123' };
+      try {
+        const res  = await fetch(N8N + '/webhook/security-monitor', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        const blocked = data.status === 'blocked';
+        showResult('secResult', data, blocked);
+        showToast(blocked ? '🛡️ Attack blocked!' : '✅ Clean request passed', blocked ? '#7F1D1D' : '#064E3B');
+      } catch(e) {
+        showResult('secResult', 'Error: ' + e.message, true);
+      }
+    }
+
+    async function resetRateLimit() {
+      const el = document.getElementById('resetResult');
+      el.classList.remove('hidden');
+      el.style.color = '#FCD34D';
+      el.textContent = 'Resetting...';
+      try {
+        const res = await fetch(N8N + '/webhook/agenda-estrategica', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ _reset: true, nombre:'reset', email:'r@r.com', empresa:'reset', motivo_consulta:'reset' })
+        });
+        el.style.color = '#6EE7B7';
+        el.textContent = 'Done — counters will reset on next execution cycle.';
+        showToast('Rate limits reset ✅');
+      } catch(e) {
+        el.style.color = '#FCA5A5';
+        el.textContent = 'Error: ' + e.message;
+      }
+    }
+  </script>
+</body>
+</html>
