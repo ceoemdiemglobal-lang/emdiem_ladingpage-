@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EMDIEM Global Services — Agenda Estratégica</title>
+  <title>EMDIEM Global Services — Strategic Advisory</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -28,15 +28,17 @@
     .btn-primary { background: linear-gradient(135deg, #F59E0B, #D97706); transition: all 0.3s ease; }
     .btn-primary:hover { background: linear-gradient(135deg, #FBBF24, #F59E0B); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(245,158,11,0.4); }
     .btn-primary:active { transform: translateY(0); }
+    .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
     .particle { position: absolute; border-radius: 50%; animation: float linear infinite; }
     @keyframes float { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; } }
     .badge-pulse { animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite; }
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .flag { font-size: 1.1rem; }
   </style>
 </head>
 <body class="bg-dark-900 text-white font-sans min-h-screen overflow-x-hidden">
 
-  <!-- Partículas de fondo -->
+  <!-- Background particles -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
     <div class="particle w-1 h-1 bg-gold-500 opacity-30 left-[10%]" style="animation-duration:18s;animation-delay:0s;"></div>
     <div class="particle w-1 h-1 bg-gold-400 opacity-20 left-[25%]" style="animation-duration:22s;animation-delay:3s;"></div>
@@ -49,68 +51,138 @@
   <!-- HERO -->
   <section class="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-20">
 
-    <!-- Logo / Badge -->
+    <!-- Live badge -->
     <div class="flex items-center gap-2 mb-8">
       <div class="w-2 h-2 rounded-full bg-green-400 badge-pulse"></div>
-      <span class="text-xs font-medium text-gray-400 tracking-widest uppercase">Sistema Activo · Agenda en Tiempo Real</span>
+      <span class="text-xs font-medium text-gray-400 tracking-widest uppercase">Live System · Real-Time Scheduling</span>
     </div>
 
     <!-- Headline -->
     <h1 class="text-4xl md:text-6xl lg:text-7xl font-800 text-center leading-tight mb-6 max-w-4xl">
-      <span class="gradient-text font-extrabold">Agenda Estratégica</span><br/>
-      <span class="text-white font-light">Internacional</span>
+      <span class="gradient-text font-extrabold">Strategic Advisory</span><br/>
+      <span class="text-white font-light">Across Europe & Beyond</span>
     </h1>
 
-    <p class="text-gray-400 text-center text-lg md:text-xl max-w-2xl mb-4 leading-relaxed">
-      Consultoría de alto nivel para empresas que operan a escala global.
-      Auditorías, GDPR, expansiones internacionales y estructuración corporativa.
+    <p class="text-gray-400 text-center text-lg md:text-xl max-w-2xl mb-6 leading-relaxed">
+      Senior-level consulting for corporations operating at a global scale.
+      GDPR compliance, international audits, M&A structuring and cross-border expansion.
     </p>
 
-    <!-- Trust badges -->
-    <div class="flex flex-wrap justify-center gap-4 mb-14 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> Suiza & Europa</span>
-      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> Compliance GDPR</span>
-      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> Due Diligence</span>
-      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> M&A Internacional</span>
+    <!-- European presence flags -->
+    <div class="flex flex-wrap justify-center gap-3 mb-6">
+      <span class="flag" title="Switzerland">🇨🇭</span>
+      <span class="flag" title="Germany">🇩🇪</span>
+      <span class="flag" title="France">🇫🇷</span>
+      <span class="flag" title="United Kingdom">🇬🇧</span>
+      <span class="flag" title="Netherlands">🇳🇱</span>
+      <span class="flag" title="Luxembourg">🇱🇺</span>
+      <span class="flag" title="Belgium">🇧🇪</span>
+      <span class="flag" title="Austria">🇦🇹</span>
+      <span class="flag" title="Sweden">🇸🇪</span>
+      <span class="flag" title="Denmark">🇩🇰</span>
+      <span class="flag" title="Norway">🇳🇴</span>
+      <span class="flag" title="Finland">🇫🇮</span>
+      <span class="flag" title="Spain">🇪🇸</span>
+      <span class="flag" title="Italy">🇮🇹</span>
+      <span class="flag" title="Portugal">🇵🇹</span>
+      <span class="flag" title="Poland">🇵🇱</span>
+      <span class="flag" title="Czech Republic">🇨🇿</span>
+      <span class="flag" title="Ireland">🇮🇪</span>
+      <span class="flag" title="Greece">🇬🇷</span>
+      <span class="flag" title="Romania">🇷🇴</span>
     </div>
 
-    <!-- FORMULARIO -->
+    <!-- Trust badges -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12 text-xs text-gray-500">
+      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> Switzerland & EU Markets</span>
+      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> GDPR Compliance</span>
+      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> Cross-Border Due Diligence</span>
+      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> M&A International</span>
+      <span class="flex items-center gap-1.5"><span class="text-gold-500">◆</span> Corporate Structuring</span>
+    </div>
+
+    <!-- FORM -->
     <div class="w-full max-w-lg card-glass rounded-2xl p-8 glow-gold">
 
       <div class="mb-6">
-        <h2 class="text-xl font-semibold text-white mb-1">Solicitar Reunión Estratégica</h2>
-        <p class="text-gray-500 text-sm">Consultas prioritarias confirmadas en minutos.</p>
+        <h2 class="text-xl font-semibold text-white mb-1">Request a Strategic Meeting</h2>
+        <p class="text-gray-500 text-sm">Priority inquiries confirmed within minutes.</p>
       </div>
 
       <form id="agendaForm" class="space-y-4">
 
         <div>
-          <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Nombre completo</label>
-          <input type="text" id="nombre" placeholder="Ej. Carlos Mendez" required
+          <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Full Name</label>
+          <input type="text" id="nombre" placeholder="e.g. Alexandra Müller" required
             class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-gray-600 text-sm"/>
         </div>
 
         <div>
-          <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Email corporativo</label>
-          <input type="email" id="email" placeholder="carlos@empresa.com" required
+          <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Corporate Email</label>
+          <input type="email" id="email" placeholder="a.muller@company.eu" required
             class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-gray-600 text-sm"/>
         </div>
 
-        <div>
-          <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Empresa</label>
-          <input type="text" id="empresa" placeholder="Nombre de tu empresa" required
-            class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-gray-600 text-sm"/>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Company</label>
+            <input type="text" id="empresa" placeholder="e.g. Müller Group AG" required
+              class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-gray-600 text-sm"/>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Country</label>
+            <select id="pais" class="input-field w-full rounded-lg px-4 py-3 text-white text-sm appearance-none">
+              <option value="" class="bg-dark-800">Select country</option>
+              <optgroup label="Europe" class="bg-dark-800">
+                <option value="Austria" class="bg-dark-800">🇦🇹 Austria</option>
+                <option value="Belgium" class="bg-dark-800">🇧🇪 Belgium</option>
+                <option value="Czech Republic" class="bg-dark-800">🇨🇿 Czech Republic</option>
+                <option value="Denmark" class="bg-dark-800">🇩🇰 Denmark</option>
+                <option value="Finland" class="bg-dark-800">🇫🇮 Finland</option>
+                <option value="France" class="bg-dark-800">🇫🇷 France</option>
+                <option value="Germany" class="bg-dark-800">🇩🇪 Germany</option>
+                <option value="Greece" class="bg-dark-800">🇬🇷 Greece</option>
+                <option value="Ireland" class="bg-dark-800">🇮🇪 Ireland</option>
+                <option value="Italy" class="bg-dark-800">🇮🇹 Italy</option>
+                <option value="Luxembourg" class="bg-dark-800">🇱🇺 Luxembourg</option>
+                <option value="Netherlands" class="bg-dark-800">🇳🇱 Netherlands</option>
+                <option value="Norway" class="bg-dark-800">🇳🇴 Norway</option>
+                <option value="Poland" class="bg-dark-800">🇵🇱 Poland</option>
+                <option value="Portugal" class="bg-dark-800">🇵🇹 Portugal</option>
+                <option value="Romania" class="bg-dark-800">🇷🇴 Romania</option>
+                <option value="Spain" class="bg-dark-800">🇪🇸 Spain</option>
+                <option value="Sweden" class="bg-dark-800">🇸🇪 Sweden</option>
+                <option value="Switzerland" class="bg-dark-800">🇨🇭 Switzerland</option>
+                <option value="United Kingdom" class="bg-dark-800">🇬🇧 United Kingdom</option>
+              </optgroup>
+              <optgroup label="Americas" class="bg-dark-800">
+                <option value="United States" class="bg-dark-800">🇺🇸 United States</option>
+                <option value="Canada" class="bg-dark-800">🇨🇦 Canada</option>
+                <option value="Mexico" class="bg-dark-800">🇲🇽 Mexico</option>
+                <option value="Venezuela" class="bg-dark-800">🇻🇪 Venezuela</option>
+                <option value="Colombia" class="bg-dark-800">🇨🇴 Colombia</option>
+                <option value="Argentina" class="bg-dark-800">🇦🇷 Argentina</option>
+                <option value="Brazil" class="bg-dark-800">🇧🇷 Brazil</option>
+                <option value="Chile" class="bg-dark-800">🇨🇱 Chile</option>
+              </optgroup>
+              <optgroup label="Other" class="bg-dark-800">
+                <option value="UAE" class="bg-dark-800">🇦🇪 UAE</option>
+                <option value="Singapore" class="bg-dark-800">🇸🇬 Singapore</option>
+                <option value="Other" class="bg-dark-800">🌍 Other</option>
+              </optgroup>
+            </select>
+          </div>
         </div>
 
         <div>
-          <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Motivo de consulta</label>
-          <textarea id="motivo" rows="3" placeholder="Ej: Necesito una auditoría GDPR para expansión a Suiza..." required
+          <label class="block text-xs font-medium text-gray-400 mb-1.5 tracking-wide uppercase">Reason for Inquiry</label>
+          <textarea id="motivo" rows="3" placeholder="e.g. We require a GDPR audit for our expansion into Switzerland and Germany..." required
             class="input-field w-full rounded-lg px-4 py-3 text-white placeholder-gray-600 text-sm resize-none"></textarea>
         </div>
 
         <button type="submit" id="submitBtn"
           class="btn-primary w-full py-3.5 rounded-lg font-semibold text-dark-900 text-sm tracking-wide flex items-center justify-center gap-2">
-          <span id="btnText">Solicitar Reunión Ahora</span>
+          <span id="btnText">Request Strategic Meeting</span>
           <svg id="btnIcon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
           </svg>
@@ -122,7 +194,7 @@
 
       </form>
 
-      <!-- Estado: éxito -->
+      <!-- Success: meeting confirmed -->
       <div id="successMsg" class="hidden mt-4 p-4 rounded-xl border border-green-500/30 bg-green-500/10">
         <div class="flex items-start gap-3">
           <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -131,13 +203,13 @@
             </svg>
           </div>
           <div>
-            <p class="text-green-400 font-semibold text-sm mb-1">Reunión Confirmada</p>
+            <p class="text-green-400 font-semibold text-sm mb-1">Meeting Confirmed</p>
             <p id="successDetail" class="text-gray-400 text-xs leading-relaxed"></p>
           </div>
         </div>
       </div>
 
-      <!-- Estado: prioridad estándar -->
+      <!-- Standard priority -->
       <div id="standardMsg" class="hidden mt-4 p-4 rounded-xl border border-blue-500/30 bg-blue-500/10">
         <div class="flex items-start gap-3">
           <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -146,13 +218,13 @@
             </svg>
           </div>
           <div>
-            <p class="text-blue-400 font-semibold text-sm mb-1">Solicitud Recibida</p>
-            <p class="text-gray-400 text-xs leading-relaxed">Nuestro equipo se pondrá en contacto contigo en las próximas 24-48 horas para coordinar la reunión.</p>
+            <p class="text-blue-400 font-semibold text-sm mb-1">Inquiry Received</p>
+            <p class="text-gray-400 text-xs leading-relaxed">Our team will reach out within 24–48 hours to schedule your consultation.</p>
           </div>
         </div>
       </div>
 
-      <!-- Estado: rate limited -->
+      <!-- Rate limited -->
       <div id="rateLimitMsg" class="hidden mt-4 p-4 rounded-xl border border-red-500/30 bg-red-500/10">
         <div class="flex items-start gap-3">
           <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -161,26 +233,25 @@
             </svg>
           </div>
           <div>
-            <p class="text-red-400 font-semibold text-sm mb-1">Límite de solicitudes alcanzado</p>
+            <p class="text-red-400 font-semibold text-sm mb-1">Request Limit Reached</p>
             <p id="rateLimitDetail" class="text-gray-400 text-xs leading-relaxed"></p>
           </div>
         </div>
       </div>
 
-      <!-- Estado: error -->
+      <!-- Error -->
       <div id="errorMsg" class="hidden mt-4 p-4 rounded-xl border border-orange-500/30 bg-orange-500/10">
-        <p class="text-orange-400 text-sm font-medium">Error al enviar. Por favor intenta nuevamente.</p>
+        <p class="text-orange-400 text-sm font-medium">Something went wrong. Please try again.</p>
       </div>
 
     </div>
 
     <!-- Disclaimer -->
     <p class="text-gray-600 text-xs mt-6 text-center max-w-sm">
-      Al enviar este formulario aceptas que procesemos tu información para gestionar la cita solicitada.
+      By submitting this form you agree to the processing of your data to manage the requested consultation. GDPR compliant.
     </p>
   </section>
 
-  <!-- SCRIPT -->
   <script>
     const WEBHOOK_URL = 'https://ceo-emdiem-global-services-n8n.ex71kk.easypanel.host/webhook/agenda-estrategica';
 
@@ -198,7 +269,7 @@
 
     function setLoading(loading) {
       submitBtn.disabled = loading;
-      btnText.textContent = loading ? 'Procesando...' : 'Solicitar Reunión Ahora';
+      btnText.textContent = loading ? 'Processing...' : 'Request Strategic Meeting';
       btnIcon.classList.toggle('hidden', loading);
       btnSpinner.classList.toggle('hidden', !loading);
     }
@@ -208,26 +279,26 @@
       hideAll();
       setLoading(true);
 
+      const country = document.getElementById('pais').value;
       const payload = {
-        nombre:           document.getElementById('nombre').value.trim(),
-        email:            document.getElementById('email').value.trim(),
-        empresa:          document.getElementById('empresa').value.trim(),
-        motivo_consulta:  document.getElementById('motivo').value.trim()
+        nombre:          document.getElementById('nombre').value.trim(),
+        email:           document.getElementById('email').value.trim(),
+        empresa:         document.getElementById('empresa').value.trim() + (country ? ' (' + country + ')' : ''),
+        motivo_consulta: document.getElementById('motivo').value.trim()
       };
 
       try {
-        const res = await fetch(WEBHOOK_URL, {
+        const res  = await fetch(WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-
         const data = await res.json();
 
         if (data.status === 'confirmed') {
           document.getElementById('successDetail').textContent =
-            'Tu reunión ha sido agendada para el ' + data.cita.fecha +
-            ' a las ' + data.cita.hora + '. Se envió una confirmación a ' + data.cita.confirmacion_email;
+            'Your meeting has been scheduled for ' + data.cita.fecha +
+            ' at ' + data.cita.hora + '. A confirmation has been sent to ' + data.cita.confirmacion_email;
           document.getElementById('successMsg').classList.remove('hidden');
           form.reset();
 
@@ -237,10 +308,10 @@
 
         } else if (data.status === 'rate_limited') {
           const reset = data.reinicio_en
-            ? ' Podrás intentarlo nuevamente a las ' + new Date(data.reinicio_en).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }) + '.'
+            ? ' You may try again at ' + new Date(data.reinicio_en).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + '.'
             : '';
           document.getElementById('rateLimitDetail').textContent =
-            'Has realizado demasiadas solicitudes en la última hora.' + reset;
+            'Too many requests from your IP in the last hour.' + reset;
           document.getElementById('rateLimitMsg').classList.remove('hidden');
 
         } else {
